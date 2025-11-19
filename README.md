@@ -13,7 +13,7 @@ This project is set up to solve the Advent of Code 2025 puzzles using TypeScript
 
 1. **Install dependencies:**
    ```bash
-   npm install
+   yarn install
    ```
 
 2. **Create a new day's folder:**
@@ -23,15 +23,15 @@ This project is set up to solve the Advent of Code 2025 puzzles using TypeScript
    Paste your puzzle input into the `input.txt` file for the corresponding day.
 
 4. **Run the code:**
-   To run the code for a specific day, use the `npm run dev` script followed by the day number:
+   To run the code for a specific day, use the `dev` script followed by the day number:
    ```bash
-   npm run dev -- 1
+   yarn dev 1
    ```
    Replace `1` with the day you want to run.
 
 5. **Build the project:**
    To compile all TypeScript files to JavaScript, run:
    ```bash
-   npm run build
+   yarn build
    ```
    The compiled files will be in the `dist/` directory.
