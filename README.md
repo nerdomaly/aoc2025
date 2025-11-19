@@ -23,11 +23,11 @@ This project is set up to solve the Advent of Code 2025 puzzles using TypeScript
    Paste your puzzle input into the `input.txt` file for the corresponding day.
 
 4. **Run the code:**
-   To run the code for a specific day, use the `npm run dev` script followed by the path to the file:
+   To run the code for a specific day, use the `npm run dev` script followed by the day number:
    ```bash
-   npm run dev -- src/day01/index.ts
+   npm run dev -- 1
    ```
-   Replace `day01` with the day you want to run.
+   Replace `1` with the day you want to run.
 
 5. **Build the project:**
    To compile all TypeScript files to JavaScript, run:
