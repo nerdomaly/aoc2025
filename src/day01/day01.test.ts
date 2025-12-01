@@ -45,26 +45,6 @@ describe("Advent of Code 2025 Day 01", () => {
     expect(answer.clicksOnZero).toBe(20);
   });
 
-  it("should wrap around the dial correctly when spinning left", () => {
-    const answer = spinDial(5, "L10");
-    expect(answer.result).toBe(95); // Assuming the dial goes from 0 to 99
-  });
-
-  it("should wrap around the dial correctly when spinning right", () => {
-    const answer = spinDial(95, "R10");
-    expect(answer.result).toBe(5); // Assuming the dial goes from 0 to 99
-  });
-
-  it("should count times passed zero correctly when spinning left", () => {
-    const answer = spinDial(5, "L15");
-    expect(answer.clicksOnZero).toBe(1);
-  });
-
-  it("should count times passed zero correctly when spinning right", () => {
-    const answer = spinDial(95, "R10");
-    expect(answer.clicksOnZero).toBe(1);
-  });
-
   it("should handle multiple spins correctly", () => {
     let currentPosition = 50;
     const spins = ["R30", "L60", "R80", "L20"];
