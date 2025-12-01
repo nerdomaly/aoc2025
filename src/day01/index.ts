@@ -1,36 +1,30 @@
 import * as fs from "fs";
+import { spinDial } from "./spinDial";
 
-export const spinDial = (
-  startingPosition: number,
-  spinCode: string
-): number => {
-  let direction = spinCode.substring(0, 1);
-  let distance = parseInt(spinCode.substring(1), 10);
-
-  if (direction === "L") {
-    currentLocation = (startingPosition - distance + 100) % 100;
-  } else if (direction === "R") {
-    currentLocation = (startingPosition + distance) % 100;
-  }
-
-  return currentLocation;
-};
-
-let currentLocation = 50;
+export let currentLocation = 50;
 
 const input = fs.readFileSync("src/day01/input.txt", "utf-8");
 const spinCodes = input.split("\n").filter((line) => line.trim() !== "");
 const locations = spinCodes.map((code) => {
-  currentLocation = spinDial(currentLocation, code);
-  return currentLocation;
+  let location = spinDial(currentLocation, code);
+  currentLocation = location.result;
+  return location;
 });
 
 console.log(`Final dial position: ${currentLocation}`);
 console.log(
-  `Final dial position (sanity check): ${locations[locations.length - 1]}`
+  `Final dial position (sanity check): ${
+    locations[locations.length - 1].result
+  }`
 );
 console.log(
-  `Number of times dial passed position 0: ${
-    locations.filter((loc) => loc === 0).length
+  `Number of times dial landed position 0: ${
+    locations.filter((loc) => loc.result === 0).length
   }`
+);
+console.log(
+  `Number of times dial passed position 0: ${locations.reduce(
+    (acc, loc) => acc + loc.clicksOnZero,
+    0
+  )}`
 );

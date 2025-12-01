@@ -1,23 +1,82 @@
-import { spinDial } from "./index";
+import { spinDial } from "./spinDial";
 
 describe("Advent of Code 2025 Day 01", () => {
   it("should spin the dial left correctly", () => {
-    const result = spinDial(50, "L10");
-    expect(result).toBe(40);
+    let answer = spinDial(40, "L50");
+    expect(answer.result).toBe(90);
+    expect(answer.clicksOnZero).toBe(1);
+
+    answer = spinDial(40, "L100");
+    expect(answer.result).toBe(40);
+    expect(answer.clicksOnZero).toBe(1);
+
+    answer = spinDial(40, "L150");
+    expect(answer.result).toBe(90);
+    expect(answer.clicksOnZero).toBe(2);
+
+    answer = spinDial(40, "L200");
+    expect(answer.result).toBe(40);
+    expect(answer.clicksOnZero).toBe(2);
+
+    answer = spinDial(40, "L2000");
+    expect(answer.result).toBe(40);
+    expect(answer.clicksOnZero).toBe(20);
   });
 
   it("should spin the dial right correctly", () => {
-    const result = spinDial(50, "R15");
-    expect(result).toBe(65);
+    let answer = spinDial(40, "R50");
+    expect(answer.result).toBe(90);
+    expect(answer.clicksOnZero).toBe(0);
+
+    answer = spinDial(40, "R100");
+    expect(answer.result).toBe(40);
+    expect(answer.clicksOnZero).toBe(1);
+
+    answer = spinDial(40, "R150");
+    expect(answer.result).toBe(90);
+    expect(answer.clicksOnZero).toBe(1);
+
+    answer = spinDial(40, "R200");
+    expect(answer.result).toBe(40);
+    expect(answer.clicksOnZero).toBe(2);
+
+    answer = spinDial(40, "R2000");
+    expect(answer.result).toBe(40);
+    expect(answer.clicksOnZero).toBe(20);
   });
 
   it("should wrap around the dial correctly when spinning left", () => {
-    const result = spinDial(5, "L10");
-    expect(result).toBe(95); // Assuming the dial goes from 0 to 99
+    const answer = spinDial(5, "L10");
+    expect(answer.result).toBe(95); // Assuming the dial goes from 0 to 99
   });
 
   it("should wrap around the dial correctly when spinning right", () => {
-    const result = spinDial(95, "R10");
-    expect(result).toBe(5); // Assuming the dial goes from 0 to 99
+    const answer = spinDial(95, "R10");
+    expect(answer.result).toBe(5); // Assuming the dial goes from 0 to 99
+  });
+
+  it("should count times passed zero correctly when spinning left", () => {
+    const answer = spinDial(5, "L15");
+    expect(answer.clicksOnZero).toBe(1);
+  });
+
+  it("should count times passed zero correctly when spinning right", () => {
+    const answer = spinDial(95, "R10");
+    expect(answer.clicksOnZero).toBe(1);
+  });
+
+  it("should handle multiple spins correctly", () => {
+    let currentPosition = 50;
+    const spins = ["R30", "L60", "R80", "L20"];
+    let totalTimesPassedZero = 0;
+
+    spins.forEach((spin) => {
+      const result = spinDial(currentPosition, spin);
+      currentPosition = result.result;
+      totalTimesPassedZero += result.clicksOnZero;
+    });
+
+    expect(currentPosition).toBe(80);
+    expect(totalTimesPassedZero).toBe(1);
   });
 });
