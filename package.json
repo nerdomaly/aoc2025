@@ -7,7 +7,9 @@
     "build": "tsc",
     "dev": "./scripts/dev.sh",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:day": "./scripts/test.sh",
+    "test:watch": "jest --watch",
+    "test:watch:day": "./scripts/test-day-watch.sh"
   },
   "keywords": [],
   "author": "",
