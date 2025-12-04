@@ -1,6 +1,9 @@
-export const countAccessiblePaper = (grid: string[][]): number => {
-  if (grid.length === 0) return 0;
+export const countAccessiblePaper = (
+  grid: string[][]
+): { totalAccessible: number; updatedGrid: string[][] } => {
+  if (grid.length === 0) return { totalAccessible: 0, updatedGrid: [] };
 
+  const workingGrid = grid.map((row) => [...row]);
   const numRows = grid.length;
   const numCols = grid[0].length;
   let totalAccessible = 0;
@@ -60,6 +63,7 @@ export const countAccessiblePaper = (grid: string[][]): number => {
 
         if (adjacentCount < 4) {
           accessible = true;
+          workingGrid[row][col] = "x";
         }
 
         if (accessible) {
@@ -69,5 +73,5 @@ export const countAccessiblePaper = (grid: string[][]): number => {
     }
   }
 
-  return totalAccessible;
+  return { totalAccessible, updatedGrid: workingGrid };
 };
